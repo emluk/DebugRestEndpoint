@@ -45,6 +45,8 @@ namespace DebugRestEndpoint.Controllers
         {
             var reader = new StreamReader(Request.Body, Encoding.UTF8);
             var message = reader.ReadToEndAsync().Result;
+            // replace carriage returns to avoid issues with v2 messages
+            message = message.Replace("\r\n", "\n").Replace("\r","\\n");
             return message;
         }
     }
