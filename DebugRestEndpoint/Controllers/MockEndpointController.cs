@@ -30,15 +30,17 @@ namespace DebugRestEndpoint.Controllers
         [HttpPut("{*path}")]
         public ActionResult LogPut(string path)
         {
-            _logger.LogInformation($"Name: {_name}\nMethod: PUT\nRelative Path: {path}\nBody:\n{GetMessageFromBody()}");
-            return Ok();
+            var message = GetMessageFromBody();
+            _logger.LogInformation($"Name: {_name}\nMethod: PUT\nRelative Path: {path}\nBody:\n{message}");
+            return Ok(message);
         }
 
         [HttpPost("{*path}")]
         public ActionResult LogPost(string path)
         {
-            _logger.LogInformation($"Name: {_name}\nMethod: POST\nRelative Path: {path}\nBody:\n{GetMessageFromBody()}");
-            return Ok();
+            var message = GetMessageFromBody();
+            _logger.LogInformation($"Name: {_name}\nMethod: POST\nRelative Path: {path}\nBody:\n{message}");
+            return Ok(message);
         }
 
         private string GetMessageFromBody()
